@@ -2,6 +2,7 @@ import React, {useEffect} from "react";
 import NavBar from "./components/NavBar";
 import { Outlet } from "react-router";
 import { useNavigation } from "react-router";
+import nProgress from "nprogress";
 
 function BaseLayout() {
   const navigation = useNavigation();
