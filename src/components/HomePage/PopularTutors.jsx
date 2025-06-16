@@ -1,17 +1,18 @@
 import React from "react";
+import TitleText from '../TitleText'
 
 function PopularTutors() {
   return (
-    <section className="p-6 max-w-7xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6">Featured Tutors</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <section className="p-6  bg-base-300 py-15">
+      <TitleText title="Popular Tutors" subtitle="Meet Our Most Popular Tutors"></TitleText>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:w-[85%] mx-auto">
         {[1, 2, 3].map((_, idx) => (
           <div
             key={idx}
             className="bg-white rounded-xl shadow p-4 flex flex-col items-center text-center hover:shadow-lg transition"
           >
             <img
-              src="/tutors/sample.jpg"
+              src="https://placehold.co/600x400"
               alt="Tutor"
               className="w-24 h-24 rounded-full object-cover mb-4"
             />

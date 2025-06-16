@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import TitleText from "../TitleText"
 
 const tutorials = [
   {
@@ -29,9 +30,9 @@ const tutorials = [
 
 const PopularTutorials = () => {
   return (
-    <section className="py-12 px-4 max-w-7xl mx-auto">
-      <h2 className="text-2xl font-semibold mb-6 text-center">Popular Tutorials</h2>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <section className="py-12 px-4">
+      <TitleText title="Popular Tutorials" subtitle="Taken By Thousand Language Learners"></TitleText>
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:w-[85%] mx-auto">
         {tutorials.map((tutorial) => (
           <Link
             to={`/tutorials/${tutorial.id}`}
@@ -39,7 +40,7 @@ const PopularTutorials = () => {
             className="bg-white rounded-xl shadow hover:shadow-lg transition overflow-hidden group"
           >
             <img
-              src={tutorial.thumbnail}
+              src="https://placehold.co/600x400"
               alt={tutorial.title}
               className="w-full h-40 object-cover group-hover:scale-105 transition-transform"
             />

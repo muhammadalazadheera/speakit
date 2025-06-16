@@ -5,6 +5,7 @@ import RegisterPage from "../pages/auth/RegisterPage";
 import BaseLayout from "../BaseLayout";
 import ProfilePage from "../pages/ProfilePage";
 import PrivateRoutes from "./PrivateRoutes";
+import AddTutorial from "../pages/AddTutorial";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <PrivateRoutes><ProfilePage></ProfilePage></PrivateRoutes>
+            },
+            {
+                path: "/add-tutorial",
+                element: <PrivateRoutes><AddTutorial></AddTutorial></PrivateRoutes>
             }
         ]
     }

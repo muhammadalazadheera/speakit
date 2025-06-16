@@ -91,7 +91,7 @@ function NavBar() {
             </ul>
           </div>
           <Link to="/" className="logo-text text-xl lg:text-3xl font-extrabold">
-            MateMatch
+            SpeakIt
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
