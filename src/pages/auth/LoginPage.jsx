@@ -1,39 +1,58 @@
-import React, { use } from "react";
-import { Link, useNavigate } from "react-router";
+import React, { use, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
-
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 function LoginPage() {
+  const location = useLocation();
   const navigate = useNavigate();
-  const { signInUser, user } = use(AuthContext);
+  const { signInUser, user, signInUserWithGoogle } = use(AuthContext);
+
+  useEffect(() => {
+    if (user) {
+      navigate("/");
+    }
+  }, [user]);
+
+  const signinWithGoogle = (e) => {
+    e.preventDefault();
+    signInUserWithGoogle()
+    .then((user) => {
+      if (user) {
+        toast.success(`Welcome, ${user.user.displayName}`);
+        navigate(location.state || "/");
+      }
+    });
+  }
+
   const loginUser = (e) => {
     e.preventDefault();
 
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    signInUser(email, password)
-      .then((user) => {
-        navigate("/");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    signInUser(email, password).then((user) => {
+      if (user) {
+        toast.success(`Welcome, ${user.user.displayName}`);
+        navigate(location.state || "/");
+      }
+    });
   };
-  if(user) {
-    navigate("/");
-  }
+
+  
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <h1 className="text-2xl font-bold mb-4 uppercase">Login</h1>
+    <div className="flex flex-col items-center justify-center md:p-0">
+
+      <Helmet><title>Login</title></Helmet>
       <form
         onSubmit={loginUser}
-        className="border p-4 max-w-sm w-full bg-white shadow-md rounded-md"
+        className="border mt-[12%] p-4 max-w-sm w-full shadow-md rounded-md my-10"
       >
         <div className="mb-4">
           <label
             htmlFor="email"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-(--primary-color)"
           >
             Email
           </label>
@@ -48,7 +67,7 @@ function LoginPage() {
         <div className="mb-4">
           <label
             htmlFor="password"
-            className="block text-sm font-medium text-gray-700"
+            className="block text-sm font-medium text-(--primary-color)"
           >
             Password
           </label>
@@ -66,7 +85,16 @@ function LoginPage() {
         >
           Login
         </button>
-        <p className="my-2">Don't have a account? <b><Link className="text-green-700" to="/register">Register</Link></b></p>
+        <p className="text-center my-2">Or, Login with</p>
+        <button onClick={signinWithGoogle} className="btn btn-success btn-block">GMail</button>
+        <p className="my-2">
+          Don't have a account?{" "}
+          <b>
+            <Link className="text-green-700" to="/register">
+              Register
+            </Link>
+          </b>
+        </p>
       </form>
     </div>
   );

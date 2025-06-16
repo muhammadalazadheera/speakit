@@ -1,15 +1,21 @@
-import React from 'react'
+import Hero from "daisyui/components/hero";
+import React from "react";
+import HeroSection from "../components/HomePage/HeroSection";
+import LanguageCategories from "../components/HomePage/LanguageCategories";
+import StatsCard from "../components/HomePage/StatsCard";
+import PopularTutors from "../components/HomePage/PopularTutors";
+import PopularCourses from "../components/HomePage/PopularCourses";
 
 function HomePage() {
   return (
     <div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh', textAlign: 'center' }}>
-        <img src="https://picsum.photos/300/300?random" alt="Random Unsplash" style={{ marginBottom: '20px', width: '300px', height: '300px' }} />
-        <h1>Welcome to the Home Page</h1>
-        <p>This is a simple home page layout.</p>
-      </div>
+      <HeroSection />
+      <StatsCard />
+      <LanguageCategories />
+      <PopularTutors />
+      <PopularCourses />
     </div>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

@@ -3,6 +3,8 @@ import NavBar from "./components/NavBar";
 import { Outlet } from "react-router";
 import { useNavigation } from "react-router";
 import nProgress from "nprogress";
+import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer";
 
 function BaseLayout() {
   const navigation = useNavigation();
@@ -20,6 +22,8 @@ function BaseLayout() {
     <div>
       <NavBar />
       <Outlet />
+      <Footer />
+      <ToastContainer />
     </div>
   );
 }
