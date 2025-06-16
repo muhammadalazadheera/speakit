@@ -8,12 +8,14 @@ function AddTutorial() {
   const { user } = use(AuthContext);
   const [userName, setUserName] = useState(" ");
   const [userEmail, setUserEmail] = useState(" ");
+  const [accessToken, setAccessToken] = useState(" ");
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
     if (user) {
       setUserName(user.displayName);
       setUserEmail(user.email);
+      setAccessToken(user.accessToken)
     }
   }, [user]);
 
@@ -22,12 +24,12 @@ function AddTutorial() {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
     setLoader(true);
-    console.log(data);
 
-    fetch("https://matematch-five.vercel.app/listings", {
+    fetch("http://localhost:3000/tutorials", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "Authorization": "Bearer " + accessToken
       },
       body: JSON.stringify(data),
     })
@@ -91,7 +93,7 @@ function AddTutorial() {
             required
             className="w-full input input-primary"
           />
-          <input type="hidden" name="like" value="0" />
+          <input type="hidden" name="review" value="0" />
         </div>
 
         <div>
@@ -128,7 +130,7 @@ function AddTutorial() {
           <label className="block font-medium mb-1">Tutorial Image</label>
           <input
             name="image"
-            type="text"
+            type="url"
             required
             className="w-full input input-primary"
           />
