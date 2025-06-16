@@ -6,6 +6,7 @@ import BaseLayout from "../BaseLayout";
 import ProfilePage from "../pages/ProfilePage";
 import PrivateRoutes from "./PrivateRoutes";
 import AddTutorial from "../pages/AddTutorial";
+import EditTutorial from "../pages/EditTutorial";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "/add-tutorial",
                 element: <PrivateRoutes><AddTutorial></AddTutorial></PrivateRoutes>
+            },
+            {
+                path: "/edit-tutorial/:id",
+                element: <PrivateRoutes><EditTutorial></EditTutorial></PrivateRoutes>
             }
         ]
     }
