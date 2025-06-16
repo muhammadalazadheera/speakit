@@ -37,7 +37,7 @@ function AddTutorial() {
       .then((data) => {
         setLoader(false);
         e.target.reset();
-        if (data.status === 200) {
+        if (data.status === 201) {
           toast.success("Tutorial added successfully!");
         } else {
           toast.error("Failed to add tutorial. Please try again.");
