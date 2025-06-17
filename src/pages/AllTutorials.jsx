@@ -3,9 +3,16 @@ import PageHeader from "../components/PageHeader";
 import { useLoaderData } from "react-router";
 import { Link } from "react-router";
 import { Helmet } from "react-helmet";
+import { useState } from "react";
 
 function AllTutorials() {
   const { message} = useLoaderData()
+  const [query, setQuery] = useState('');
+
+  const filtered = message.filter((item) =>
+    item.language.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <div>
       <Helmet>
@@ -14,10 +21,13 @@ function AllTutorials() {
       <PageHeader title="Browse All Tutorials" />
       <div className="w-[85%] mx-auto my-10">
         <div className="overflow-x-auto w-full">
+          <div className="mb-2">
+            <input onChange={(e) => setQuery(e.target.value)} value={query} className="input w-full input-primary" type="text" placeholder="Search By Language i.e. English" />
+          </div>
           <table className="list-table table-auto w-full min-w-[800px]">
             <tbody>
               {
-                message.length === 0 && (
+                filtered.length === 0 && (
                   <tr>
                     <td colSpan="6" className="text-center p-5">
                       No listings found.
@@ -25,7 +35,7 @@ function AllTutorials() {
                   </tr>
                 )
               }
-              {message.map((list) => (
+              {filtered.map((list) => (
                 <tr key={list._id}
                   className="border-b"
                 >
