@@ -23,7 +23,7 @@ const LanguageCategories = () => {
         title="Languages"
         subtitle="Select Your Desired Language"
       ></TitleText>
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {categories.map((category) => {
           const randomColor = logoColor[Math.floor(Math.random() * logoColor.length)];
           return (<Fade delay={category.delay} key={category.id}>
