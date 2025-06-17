@@ -24,7 +24,7 @@ function MyTutorials() {
 
   useEffect(() => {
     if (user && userEmail) {
-      fetch(`http://localhost:3000/my-tutorials/${userEmail}`, {
+      fetch(`https://assignment-11-ss.vercel.app/my-tutorials/${userEmail}`, {
         headers: {
           Authorization: "Bearer " + user.accessToken,
         },
@@ -48,7 +48,7 @@ function MyTutorials() {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(`http://localhost:3000/tutorials/${id}`, {
+        await fetch(`https://assignment-11-ss.vercel.app/tutorials/${id}`, {
           method: "DELETE",
           headers: {
             "Authorization": 'Bearer ' + user.accessToken

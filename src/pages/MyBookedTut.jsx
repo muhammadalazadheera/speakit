@@ -23,7 +23,7 @@ function MyBookedTut() {
 
   useEffect(() => {
     if (user && userEmail) {
-      fetch(`http://localhost:3000/booked/${userEmail}`, {
+      fetch(`https://assignment-11-ss.vercel.app/booked/${userEmail}`, {
         headers: {
           Authorization: "Bearer " + user.accessToken,
         },
@@ -39,7 +39,7 @@ function MyBookedTut() {
 
   const handleBookmarkClick = async (id) => {
     let likeCount = 0;
-    await fetch(`http://localhost:3000/tutorials/${id}`, {
+    await fetch(`https://assignment-11-ss.vercel.app/tutorials/${id}`, {
       headers: {
         Authorization: "Bearer " + user.accessToken,
       },
@@ -49,7 +49,7 @@ function MyBookedTut() {
         likeCount = Number(data.message.review);
       });
 
-    fetch(`http://localhost:3000/tutorials/${id}`, {
+    fetch(`https://assignment-11-ss.vercel.app/tutorials/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

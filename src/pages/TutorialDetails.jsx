@@ -29,7 +29,7 @@ function TutorialDetails() {
 
   const handleBook = () => {
     console.log('clicked')
-    fetch("http://localhost:3000/booked", {
+    fetch("https://assignment-11-ss.vercel.app/booked", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -58,7 +58,7 @@ function TutorialDetails() {
 
   useEffect(() => {
     if (user && id) {
-      fetch(`http://localhost:3000/tutorials/${id}`, {
+      fetch(`https://assignment-11-ss.vercel.app/tutorials/${id}`, {
         headers: {
           Authorization: "Bearer " + user.accessToken,
         },

@@ -22,7 +22,7 @@ const router = createBrowserRouter([
             {
                 index: true,
                 Component: HomePage,
-                loader: async () => fetch('http://localhost:3000/tutorials')
+                loader: async () => fetch('https://assignment-11-ss.vercel.app/tutorials')
             },
             ,
             {
@@ -48,12 +48,12 @@ const router = createBrowserRouter([
             {
                 path: "/find-tutorial",
                 Component: AllTutorials,
-                loader: async () => fetch('http://localhost:3000/tutorials')
+                loader: async () => fetch('https://assignment-11-ss.vercel.app/tutorials')
             },
             {
                 path: "/tutorial-by-language/:language",
                 Component: TutByLang,
-                loader: async ({params}) => fetch(`http://localhost:3000/tutorials-by-language/${params.language}`)
+                loader: async ({params}) => fetch(`https://assignment-11-ss.vercel.app/tutorials-by-language/${params.language}`)
             },
             {
                 path: "/tutorial-details/:id",

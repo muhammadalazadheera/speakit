@@ -22,7 +22,7 @@ function EditTutorial() {
 
     useEffect(() => {
     if (user && id) {
-      fetch(`http://localhost:3000/tutorials/${id}`, {
+      fetch(`https://assignment-11-ss.vercel.app/tutorials/${id}`, {
         headers: {
           Authorization: "Bearer " + user.accessToken,
         },
@@ -40,7 +40,7 @@ function EditTutorial() {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData.entries());
 
-    fetch(`http://localhost:3000/tutorials/${id}`, {
+    fetch(`https://assignment-11-ss.vercel.app/tutorials/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

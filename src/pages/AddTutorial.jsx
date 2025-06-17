@@ -26,7 +26,7 @@ function AddTutorial() {
     const data = Object.fromEntries(formData.entries());
     setLoader(true);
 
-    fetch("http://localhost:3000/tutorials", {
+    fetch("https://assignment-11-ss.vercel.app/tutorials", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
