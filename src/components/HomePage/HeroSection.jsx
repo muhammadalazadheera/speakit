@@ -36,7 +36,7 @@ function HeroSection() {
         <SwiperSlide className="relative">
           <div className="hero-text w-full h-full bg-black absolute top-0">
             <Fade delay={300}>
-              <p>Speak a new language, open new doors. Start your journey today!</p>
+              <p>Speak a new language, open new doors.</p>
             </Fade>
             <Fade>
               <h1>Unlock Your World with LanguageExchange</h1>
@@ -51,7 +51,7 @@ function HeroSection() {
         <SwiperSlide className="relative">
           <div className="hero-text w-full h-full bg-black absolute top-0">
             <Fade delay={300}>
-              <p>Engaging lessons, real-world conversations. Your fluency starts here.</p>
+              <p>Your fluency starts here.</p>
             </Fade>
             <Fade>
               <h1>Master a New Language, the Fun Way!</h1>

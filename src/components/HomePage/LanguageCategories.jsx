@@ -29,7 +29,7 @@ const LanguageCategories = () => {
             logoColor[Math.floor(Math.random() * logoColor.length)];
           return (<Fade delay={category.delay}>
             <Link
-              to="/find-tutors"
+              to={`/tutorial-by-language/${category.title}`}
               key={category.id}
               className="border bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50"
             >

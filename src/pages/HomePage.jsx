@@ -5,15 +5,18 @@ import LanguageCategories from "../components/HomePage/LanguageCategories";
 import StatsCard from "../components/HomePage/StatsCard";
 import PopularTutors from "../components/HomePage/PopularTutors";
 import PopularCourses from "../components/HomePage/PopularCourses";
+import { useLoaderData } from "react-router";
+import NewsletterSection from "../components/HomePage/Sunscriction";
 
 function HomePage() {
+  const { message } = useLoaderData()
   return (
     <div>
       <HeroSection />
-      <StatsCard />
+      <StatsCard tutorials={message} />
       <LanguageCategories />
-      <PopularTutors />
-      <PopularCourses />
+      <PopularTutors tutorials={message} />
+      <NewsletterSection></NewsletterSection>
     </div>
   );
 }

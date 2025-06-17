@@ -11,6 +11,7 @@ import AllTutorials from "../pages/AllTutorials";
 import TutorialDetails from "../pages/TutorialDetails";
 import MyTutorials from "../pages/MyTutorials";
 import MyBookedTut from "../pages/MyBookedTut";
+import TutByLang from "../pages/TutByLang";
 
 const router = createBrowserRouter([
     {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: HomePage
+                Component: HomePage,
+                loader: async () => fetch('http://localhost:3000/tutorials')
             },
             ,
             {
@@ -47,6 +49,11 @@ const router = createBrowserRouter([
                 path: "/find-tutorial",
                 Component: AllTutorials,
                 loader: async () => fetch('http://localhost:3000/tutorials')
+            },
+            {
+                path: "/tutorial-by-language/:language",
+                Component: TutByLang,
+                loader: async ({params}) => fetch(`http://localhost:3000/tutorials-by-language/${params.language}`)
             },
             {
                 path: "/tutorial-details/:id",
