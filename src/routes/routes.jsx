@@ -55,7 +55,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/tutorial-details/:id",
-                Component: TutorialDetails
+                element: <PrivateRoutes><TutorialDetails></TutorialDetails></PrivateRoutes>
             },
             {
                 path: "/my-tutorials",
