@@ -13,7 +13,6 @@ function AddTutorial() {
 
   useEffect(() => {
     if (user) {
-      console.log(user)
       setUserName(user.displayName);
       setUserEmail(user.email);
       setAccessToken(user.accessToken)

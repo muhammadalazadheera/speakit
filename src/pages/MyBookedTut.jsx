@@ -10,6 +10,7 @@ import { useParams } from "react-router";
 import { toast } from "react-toastify";
 
 function MyBookedTut() {
+  const [loading, setLoading] = useState(false);
   const { user } = use(AuthContext);
   const [userEmail, setUserEmail] = useState(null);
   const [tutorial, setTutorial] = useState(null);
@@ -23,6 +24,7 @@ function MyBookedTut() {
 
   useEffect(() => {
     if (user && userEmail) {
+      setLoading(true);
       fetch(`https://assignment-11-ss.vercel.app/booked/${userEmail}`, {
         headers: {
           Authorization: "Bearer " + user.accessToken,
@@ -31,9 +33,8 @@ function MyBookedTut() {
         .then((res) => res.json())
         .then((data) => {
           setTutorial(data.message);
+          setLoading(false);
         });
-
-        
     }
   }, [user, userEmail]);
 
@@ -75,6 +76,13 @@ function MyBookedTut() {
                 <tr>
                   <td colSpan="6" className="text-center p-5">
                     No tutorial found for your account.
+                  </td>
+                </tr>
+              )}
+              {loading && (
+                <tr>
+                  <td colSpan="6" className="text-center p-5">
+                    <span className="loading loading-ring loading-xl"></span>
                   </td>
                 </tr>
               )}

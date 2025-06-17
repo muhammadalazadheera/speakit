@@ -13,6 +13,7 @@ function MyTutorials() {
   const [userEmail, setUserEmail] = useState(null);
   const [tutorial, setTutorial] = useState(null);
   const {id} = useParams()
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     if (user) {
@@ -24,6 +25,7 @@ function MyTutorials() {
 
   useEffect(() => {
     if (user && userEmail) {
+      setLoading(true)
       fetch(`https://assignment-11-ss.vercel.app/my-tutorials/${userEmail}`, {
         headers: {
           Authorization: "Bearer " + user.accessToken,
@@ -32,6 +34,7 @@ function MyTutorials() {
         .then((res) => res.json())
         .then((data) => {
           setTutorial(data.message)
+          setLoading(false)
         });
     }
   }, [user, userEmail]);
@@ -84,6 +87,15 @@ function MyTutorials() {
                   </td>
                 </tr>
               )}
+
+              {loading && (
+                <tr>
+                  <td colSpan="6" className="text-center p-5">
+                    <span className="loading loading-ring loading-xl"></span>
+                  </td>
+                </tr>
+              )}
+
               {tutorial?.map((list) => (
                 <tr key={list?._id} className="border-b">
                   <td className="">

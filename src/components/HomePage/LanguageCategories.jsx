@@ -25,12 +25,11 @@ const LanguageCategories = () => {
       ></TitleText>
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
         {categories.map((category) => {
-          const randomColor =
-            logoColor[Math.floor(Math.random() * logoColor.length)];
-          return (<Fade delay={category.delay}>
+          const randomColor = logoColor[Math.floor(Math.random() * logoColor.length)];
+          return (<Fade delay={category.delay} key={category.id}>
             <Link
               to={`/tutorial-by-language/${category.title}`}
-              key={category.id}
+              
               className="border bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-between p-4 cursor-pointer hover:bg-gray-50"
             >
               <div className="flex items-center gap-3">
