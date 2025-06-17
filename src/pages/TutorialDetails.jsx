@@ -55,7 +55,7 @@ function TutorialDetails() {
         language: tutorial.language,
         price: tutorial.price,
         tutorEmail: tutorial.userEmail,
-        email: user.email,
+        userEmail: user.email,
       }),
     })
       .then((res) => res.json())

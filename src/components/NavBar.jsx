@@ -100,13 +100,13 @@ function NavBar() {
               <NavLink to="/">Home</NavLink>
             </li>
             <li>
-              <NavLink to="/add-listing">Find Tutors</NavLink>
+              <NavLink to="/find-tutorial">Find Tutors</NavLink>
             </li>
             <li>
-              <NavLink to="/all-listings">Add Tutorials</NavLink>
+              <NavLink to="/add-tutorial">Add Tutorials</NavLink>
             </li>
             <li>
-              <NavLink to="/my-listings">My Tutorials</NavLink>
+              <NavLink to="/my-tutorials">My Tutorials</NavLink>
             </li>
             <li>
               <NavLink to="/my-listings">My Booked Tutors</NavLink>
