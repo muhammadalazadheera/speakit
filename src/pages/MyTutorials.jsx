@@ -48,15 +48,18 @@ function MyTutorials() {
       confirmButtonText: "Yes, delete it!",
     }).then(async (result) => {
       if (result.isConfirmed) {
-        await fetch(`https://matematch-five.vercel.app/listings/${id}`, {
+        await fetch(`http://localhost:3000/tutorials/${id}`, {
           method: "DELETE",
+          headers: {
+            "Authorization": 'Bearer ' + user.accessToken
+          }
         }).then(() => {
-          const filtered = listings.filter((list) => list._id !== id);
-          setListings(filtered);
+          const filtered = tutorial.filter((list) => list._id !== id);
+          setTutorial(filtered);
         });
         Swal.fire({
           title: "Deleted!",
-          text: "Your list has been deleted.",
+          text: "Your tutorial has been deleted.",
           icon: "success",
         });
       }
@@ -110,7 +113,7 @@ function MyTutorials() {
                       Details
                     </Link>
                     <Link
-                      to={`/edit-listing/${list?._id}`}
+                      to={`/edit-tutorial/${list?._id}`}
                       className="btn btn-warning btn-outline mx-2 duration-150 py-2 px-2 rounded"
                     >
                       Edit
