@@ -11,11 +11,14 @@ import TutorialDetails from "../pages/TutorialDetails";
 import MyTutorials from "../pages/MyTutorials";
 import MyBookedTut from "../pages/MyBookedTut";
 import TutByLang from "../pages/TutByLang";
+import FourOFour from "../pages/FourOFour";
 
 const router = createBrowserRouter([
     {
         path: "/",
         Component: BaseLayout,
+
+
         
         children: [
             {
@@ -63,7 +66,11 @@ const router = createBrowserRouter([
                 element: <PrivateRoutes><MyBookedTut></MyBookedTut></PrivateRoutes>
             }
         ]
-    }
+    },
+    {
+        path: "*",
+        Component: FourOFour
+    },
 ]);
 
 export default router;
