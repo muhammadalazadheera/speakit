@@ -50,14 +50,6 @@ function AllTutorials() {
                     {list.title}
                   </td>
 
-                  <td className="text-(--secondary-color) uppercase font-bold p-3">
-                    {list.userName}
-                  </td>
-
-                  <td className="text-(--secondary-color) uppercase font-bold p-3">
-                    {list.language}
-                  </td>
-
                   <td className="p-3 whitespace-nowrap">
                     <i className="fas fa-money-bill mr-1 "></i> ${list.price}
                   </td>

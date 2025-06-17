@@ -47,7 +47,7 @@ function LoginPage() {
       <Helmet><title>Login</title></Helmet>
       <form
         onSubmit={loginUser}
-        className="border mt-[12%] p-4 max-w-sm w-full shadow-md rounded-md my-10"
+        className="border my-[40%] md:my-[12%] p-4 max-w-sm w-full shadow-md rounded-md"
       >
         <div className="mb-4">
           <label

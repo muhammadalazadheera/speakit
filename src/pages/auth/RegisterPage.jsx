@@ -57,7 +57,7 @@ function RegisterPage() {
 
       <form
         onSubmit={registerUser}
-        className="border mt-[12%] p-4 my-10 max-w-sm w-full shadow-md rounded-md"
+        className="border my-[35%]  md:my-[12%] p-4 max-w-sm w-full shadow-md rounded-md"
       >
         <div className="mb-4">
           <label
