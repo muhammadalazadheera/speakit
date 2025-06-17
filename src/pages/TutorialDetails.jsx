@@ -27,20 +27,6 @@ function TutorialDetails() {
     }
   }, [user]);
 
-  const handleBookmarkClick = (e) => {
-    e.preventDefault();
-    fetch(`http://localhost:3000/tutorials/${tutorial._id}`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ review: likeCount + 1 }),
-    }).then(() => {
-      const updateLikeCount = likeCount + 1;
-      setLikeCount(updateLikeCount);
-    });
-  };
-
   const handleBook = () => {
     console.log('clicked')
     fetch("http://localhost:3000/booked", {
@@ -50,7 +36,9 @@ function TutorialDetails() {
         Authorization: "Bearer " + user.accessToken,
       },
       body: JSON.stringify({
+        tutor: tutorial.userName,
         tutorId: tutorial._id,
+        title: tutorial.title,
         image: tutorial.image,
         language: tutorial.language,
         price: tutorial.price,
@@ -111,16 +99,6 @@ function TutorialDetails() {
                 <i className="fas fa-heart"></i>
                 <span>{likeCount} likes</span>
               </a>
-            </li>
-
-            <li className="ml-track-btn">
-              <button
-                onClick={handleBookmarkClick}
-                className="flex items-center gap-2 text-blue-600 disabled:text-gray-400"
-              >
-                <MdFavoriteBorder size={20} />
-                <span>Like</span>
-              </button>
             </li>
 
             <li className="ml-track-btn">

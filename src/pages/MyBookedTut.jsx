@@ -6,55 +6,58 @@ import { FiCommand, FiHome, FiPhoneOutgoing } from "react-icons/fi";
 import { AuthContext } from "../contexts/AuthContext";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import { useParams } from "react-router";
+import { toast } from "react-toastify";
 
-function MyListings() {
+function MyBookedTut() {
   const { user } = use(AuthContext);
   const [userEmail, setUserEmail] = useState(null);
-  const { message } = useLoaderData();
-  const [listings, setListings] = useState(message)
+  const [tutorial, setTutorial] = useState(null);
+  const { id } = useParams();
 
-  
   useEffect(() => {
     if (user) {
       setUserEmail(user.email);
+      console.log(user.accessToken);
     }
   }, [user]);
-  
 
   useEffect(() => {
-    if (userEmail) {
-      const filtered = message.filter((list) => list.userEmail === userEmail);
-      setListings(filtered);
-    }
-  }, [userEmail]);
+    if (user && userEmail) {
+      fetch(`http://localhost:3000/booked/${userEmail}`, {
+        headers: {
+          Authorization: "Bearer " + user.accessToken,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setTutorial(data.message);
+        });
 
-  const deleteListing = (e, id) => {
-    e.preventDefault();
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        await fetch(
-          `https://matematch-five.vercel.app/listings/${id}`,
-          {
-            method: "DELETE",
-          }
-        ).then(() => {
-          const filtered = listings.filter((list) => list._id !== id);
-          setListings(filtered);
-        });
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your list has been deleted.",
-          icon: "success",
-        });
-      }
+        
+    }
+  }, [user, userEmail]);
+
+  const handleBookmarkClick = async (id) => {
+    let likeCount = 0;
+    await fetch(`http://localhost:3000/tutorials/${id}`, {
+      headers: {
+        Authorization: "Bearer " + user.accessToken,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        likeCount = Number(data.message.review);
+      });
+
+    fetch(`http://localhost:3000/tutorials/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ review: likeCount + 1 }),
+    }).then(() => {
+      toast.success("Successfully Reviewed");
     });
   };
 
@@ -64,66 +67,54 @@ function MyListings() {
         <title>My Listings</title>
       </Helmet>
       <PageHeader title="Browse My Listings" subtitle="My Added" />
-      
+
       <div className="w-[85%] mx-auto my-10">
         <div className="overflow-x-auto w-full">
           <table className="list-table table-auto w-full min-w-[1000px]">
             <tbody>
-              {
-                listings.length === 0 && (
-                  <tr>
-                    <td colSpan="6" className="text-center p-5">
-                      No listings found for your account.
-                    </td>
-                  </tr>
-                ) 
-              }
-              {listings.map((list) => (
-                <tr key={list._id} className="border-b">
+              {tutorial?.length === 0 && (
+                <tr>
+                  <td colSpan="6" className="text-center p-5">
+                    No tutorial found for your account.
+                  </td>
+                </tr>
+              )}
+              {tutorial?.map((list) => (
+                <tr key={list?._id} className="border-b">
                   <td className="">
                     <img
                       className="rounded-md object-cover w-[50px]"
-                      src={list.image}
+                      src={list?.image}
                     />
                   </td>
 
                   <td className="text-(--secondary-color) uppercase font-bold p-3">
-                    {list.title}
+                    {list?.title}
                   </td>
+
+                  <td className="text-(--secondary-color) uppercase font-bold p-3">
+                    {list?.language}
+                  </td>
+
+                  <td className="p-3 whitespace-nowrap">{list.tutor}</td>
 
                   <td className="p-3 whitespace-nowrap">
-                    <i className="fas fa-home mr-1 "></i> {list.type}
+                    <i className="fas fa-money-bill mr-1 "></i> ${list.price}
                   </td>
 
-                  <td className="p-3 whitespace-nowrap">
-                    <i className="fas fa-money-bill mr-1 "></i> ${list.rent}/mo
-                  </td>
-
-                  <td className="p-3 whitespace-nowrap">
-                    <i className="fas fa-heart mr-1 "></i> {list.like}
-                  </td>
-
-                  <td className="p-3 w-[30%]">
+                  <td className="p-3">
                     <Link
-                      to={`/list-details/${list._id}`}
-                      className="btn btn-primary btn-outline duration-150 py-2 px-2 rounded"
+                      to={`/tutorial-details/${list?.tutorId}`}
+                      className="btn btn-primary btn-outline duration-150 mr-2 py-2 px-2 rounded"
                     >
                       Details
                     </Link>
-                    <Link
-                      to={`/edit-listing/${list._id}`}
-                      className="btn btn-warning btn-outline mx-2 duration-150 py-2 px-2 rounded"
+                    <button
+                      onClick={() => handleBookmarkClick(list.tutorId)}
+                      className="btn btn-primary btn-outline"
                     >
-                      Edit
-                    </Link>
-                    <Link
-                      onClick={(e) => {
-                        deleteListing(e, list._id);
-                      }}
-                      className="btn btn-error btn-outline duration-150 py-2 px-2 rounded"
-                    >
-                      Delete
-                    </Link>
+                      Review
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -134,4 +125,5 @@ function MyListings() {
     </div>
   );
 }
-export default MyListings;
+
+export default MyBookedTut;

@@ -13,6 +13,7 @@ function AddTutorial() {
 
   useEffect(() => {
     if (user) {
+      console.log(user)
       setUserName(user.displayName);
       setUserEmail(user.email);
       setAccessToken(user.accessToken)
@@ -127,10 +128,11 @@ function AddTutorial() {
         </div>
 
         <div>
-          <label className="block font-medium mb-1">Tutorial Image</label>
+          <label className="block font-medium mb-1">Tutor Image</label>
           <input
             name="image"
             type="url"
+            defaultValue={user.photoURL}
             required
             className="w-full input input-primary"
           />
