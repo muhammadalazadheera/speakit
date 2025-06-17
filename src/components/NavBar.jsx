@@ -88,6 +88,11 @@ function NavBar() {
               <li>
                 <NavLink to="/my-booked-tutorials">My Booked Tutors</NavLink>
               </li>
+              <li>
+                <a className="hover:text-white" onClick={handleSignOut}>
+                  Logout
+                </a>
+              </li>
             </ul>
           </div>
           <Link to="/" className="logo-text text-xl lg:text-3xl font-extrabold">
