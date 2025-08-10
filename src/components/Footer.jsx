@@ -21,8 +21,8 @@ function Footer() {
           <div className="social-links">
             <ul>
               <li><a href="#"><img src="https://img.icons8.com/nolan/64/facebook-new.png" alt="facebook" /></a></li>
-              <li><a href="#"><img src="https://img.icons8.com/nolan/64/instagram-new.png" alt="instagram" /></a></li>
               <li><a href="#"><img src="https://img.icons8.com/nolan/64/youtube-play.png" alt="youtube" /></a></li>
+              <li><a href="#"><img src="https://img.icons8.com/nolan/64/github.png" alt="youtube" /></a></li>
             </ul>
           </div>
         </div>

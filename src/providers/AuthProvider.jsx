@@ -59,7 +59,7 @@ function AuthProvider({ children }) {
       return await signInWithPopup(auth, provider);
     } catch (error) {
       setLoading(false);
-      toast.error(`${error.message}` || "An error occurred during sign-up");
+      toast.error(`${error.message}` || "An error occurred during sign-in");
     }
   }
 
