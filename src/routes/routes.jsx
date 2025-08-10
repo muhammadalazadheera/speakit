@@ -13,6 +13,7 @@ import MyBookedTut from "../pages/MyBookedTut";
 import TutByLang from "../pages/TutByLang";
 import FourOFour from "../pages/FourOFour";
 import TnC from "../pages/TnC";
+import PP from "../pages/PP"
 
 const router = createBrowserRouter([
     {
@@ -68,7 +69,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/privacy-policy",
-                element: <PrivateRoutes><MyTutorials></MyTutorials></PrivateRoutes>
+                element: <PP />
             },
             {
                 path: "/my-booked-tutorials",
