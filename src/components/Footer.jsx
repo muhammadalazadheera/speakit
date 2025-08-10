@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router";
 
 function Footer() {
   return (
@@ -13,9 +14,8 @@ function Footer() {
           </div>
           <div className="my-7 md:my-0">
             <ul className="uppercase text-(--primary-color) text-center md:text-left text-lg font-light">
-              <li>privacy policy</li>
-              <li>terms & condition</li>
-              <li>developer resources</li>
+              <li><Link to="/privacy-policy">privacy policy</Link></li>
+              <li><Link to="/terms-and-condition">terms and condition</Link></li>
             </ul>
           </div>
           <div className="social-links">
