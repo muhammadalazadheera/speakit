@@ -12,6 +12,7 @@ import MyTutorials from "../pages/MyTutorials";
 import MyBookedTut from "../pages/MyBookedTut";
 import TutByLang from "../pages/TutByLang";
 import FourOFour from "../pages/FourOFour";
+import TnC from "../pages/TnC";
 
 const router = createBrowserRouter([
     {
@@ -59,6 +60,14 @@ const router = createBrowserRouter([
             },
             {
                 path: "/my-tutorials",
+                element: <PrivateRoutes><MyTutorials></MyTutorials></PrivateRoutes>
+            },
+            {
+                path: "/terms-and-condition",
+                element: <TnC/>
+            },
+            {
+                path: "/privacy-policy",
                 element: <PrivateRoutes><MyTutorials></MyTutorials></PrivateRoutes>
             },
             {
